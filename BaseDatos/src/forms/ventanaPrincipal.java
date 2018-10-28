@@ -62,7 +62,7 @@ public class ventanaPrincipal {
         m_salir.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){System.exit(EXIT_ON_CLOSE);}});
         
         
-        ventana.setTitle("Administracion de Base de Datos");
+        ventana.setTitle("Administración MTTO");
         
         ventana.setSize(MAXIMIZED_BOTH, MAXIMIZED_BOTH);
         ventana.setExtendedState(MAXIMIZED_BOTH);

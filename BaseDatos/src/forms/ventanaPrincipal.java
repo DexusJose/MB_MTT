@@ -59,7 +59,14 @@ public class ventanaPrincipal {
         
         
         
-        m_salir.addActionListener(new ActionListener(){public void actionPerformed(ActionEvent e){System.exit(EXIT_ON_CLOSE);}});
+        m_salir.addActionListener(
+                new ActionListener(){
+                    public void actionPerformed(ActionEvent e){
+                        //System.exit(EXIT_ON_CLOSE);
+                        ventana.dispose();      //cambio sobre el metodo de cerrar la ventana.
+                    }
+                }
+        );
         
         
         ventana.setTitle("Administración MTTO");

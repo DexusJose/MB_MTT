@@ -14,6 +14,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -32,7 +34,7 @@ public class ventanaPrincipal {
     public Color fondoVentana = new Color(102, 179, 255);
     public JMenuBar menuBar;
     public JMenu m_Archivo;
-    public JMenuItem m_salir,add_reg;
+    public JMenuItem m_salir,m_nuevo,m_abrir;
     
     public final ImageIcon icono = new ImageIcon(BaseDatos.class.getResource("/recursos/icono/AUV.png"));
     public  void crearventana(){
@@ -46,18 +48,31 @@ public class ventanaPrincipal {
         // declaracion de menu
         m_Archivo = new JMenu("Archivo"); 
         m_salir = new JMenuItem("Salir");
-        add_reg = new JMenuItem("Agregar Registro");
+        m_nuevo = new JMenuItem("Nuevo archivo");
+        m_abrir = new JMenuItem("Abrir");
         
         //agregado deitems del menu
-        m_Archivo.add(add_reg);
+        m_Archivo.add(m_nuevo);
         
+        m_Archivo.add(m_abrir);
         
         m_Archivo.add(m_salir);
         
         menuBar.add(m_Archivo);
         menuBar.setBackground(fondoBarra);
         
-        
+        m_abrir.addActionListener(
+                new ActionListener(){
+                    public void actionPerformed(ActionEvent e){
+                        SelectorArchivo selector;
+                        selector = new SelectorArchivo();
+                        try {
+                            selector.archivoSelector();
+                        } catch (IOException ex) {
+                            Logger.getLogger(ventanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+        });
         
         m_salir.addActionListener(
                 new ActionListener(){

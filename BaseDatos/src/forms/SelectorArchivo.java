@@ -5,6 +5,7 @@
  */
 package forms;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.io.File;
@@ -12,6 +13,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
@@ -23,8 +25,24 @@ public class SelectorArchivo extends javax.swing.JFrame {
     
     public void archivoSelector() throws FileNotFoundException, IOException{
         
+        JFrame textWin = new JFrame();
+        textWin.setTitle("Texto");
+        textWin.setSize(800,600);
+        textWin.setExtendedState(NORMAL);
+        textWin.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        //textWin.setLocationRelativeTo(null);
+        //textWin.setResizable(false);
+        //textWin.setLayout(null);
+        //textWin.pack();
+        textWin.setVisible(true);
         
-        String ruta = "C:\\Users\\Almacen\\Desktop\\n.txt";
+//        JScrollPane scroll = new JScrollPane();
+//        textWin.add(scroll,BorderLayout.CENTER);
+        
+        
+        
+        //String ruta = "C:\\Users\\Almacen\\Desktop\\n.txt";
+        String ruta = "C:\\Users\\sangr\\Desktop\\n.txt";
         File f = new File(ruta);
         System.out.println(f);
         FileInputStream fis = new FileInputStream(f);
@@ -44,7 +62,7 @@ public class SelectorArchivo extends javax.swing.JFrame {
         areaScrollPane.setVerticalScrollBarPolicy(
         JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         areaScrollPane.setPreferredSize(new Dimension(250, 250));
-        
+        textWin.add(areaScrollPane);
         //areaScrollPane.setVisible(true);
         
 //        JFileChooser selectDialog ;

@@ -8,6 +8,7 @@ package forms;
 import BaseDatos.*;
 import basedatos.BaseDatos;
 import com.sun.prism.Image;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dialog;
 import java.awt.Font;
@@ -43,9 +44,22 @@ public class ventanaPrincipal {
     public static final Font FuenteTitulos = new Font("Arial",Font.BOLD,14);
     public static final Font FuenteSubtitulo = new Font("Arial",Font.BOLD,13);
     
-    public JMenuBar menuBar;
+    public JMenuBar menuBar,barLateral;
+    
+    //Menus de la barra superior.
     public JMenu m_Archivo;
+    
+    //Submenus de la barra superior.
     public JMenuItem m_salir,m_nuevo,m_abrir;
+    
+    //Menus de la barra lateral izquierda.
+    public JMenu Catalogo,Producto;
+    
+    //Submenus de la barra lateral izquierda.
+    //public JMenuItem m_Catalogo;
+    
+    
+    
     
     public final ImageIcon icono = new ImageIcon(BaseDatos.class.getResource("/recursos/icono/AUV.png"));
     public  void crearventana(){
@@ -53,34 +67,48 @@ public class ventanaPrincipal {
     }
 
     private void configurarVentana()  {
-        ventana = new JFrame();
-        panelPrincipal = new JPanel();
-        ventanaPadre = new JDesktopPane();
-        menuBar = new JMenuBar();
+        ventana         = new JFrame();
+        panelPrincipal  = new JPanel();
+        ventanaPadre    = new JDesktopPane();
+        menuBar         = new JMenuBar();
+        barLateral      = new JMenuBar();
         
-        panelPrincipal.setLayout(null);
+        ventana.getContentPane().setLayout(new BorderLayout());
+        ventana.getContentPane().add(menuBar,BorderLayout.NORTH);
+        ventana.getContentPane().add(barLateral,BorderLayout.WEST);
         
-        // declaracion de menu
+        // declaracion de menu superior
         m_Archivo = new JMenu("Archivo"); 
         m_Archivo.setFont(FuenteTitulos);
         
+        //declaracion del menu lteral izquierdo
+        Catalogo = new JMenu("Catalogo");
+        Producto = new JMenu("Producto");
         
+        //creacion de los items del menu;
         m_nuevo = new JMenuItem("Nuevo archivo");
         m_abrir = new JMenuItem("Abrir");
         m_salir = new JMenuItem("Salir");
         
+        //Asignacion de la fuente Global
         m_nuevo.setFont(FuenteSubtitulo);
         m_abrir.setFont(FuenteSubtitulo);
         m_salir.setFont(FuenteSubtitulo);
         
-        //agregado deitems del menu
+        //Creacion de la seccion del menu
+        menuBar.add(m_Archivo);
+        
+        //agregado de items del menu superior
         m_Archivo.add(m_nuevo);
         
         m_Archivo.add(m_abrir);
         
         m_Archivo.add(m_salir);
         
-        menuBar.add(m_Archivo);
+        //Creacion de la seccion del menu lateral        
+        barLateral.add(Catalogo);
+        barLateral.add(Producto);
+        
         menuBar.setBackground(fondoBarra);
         
         m_nuevo.addActionListener(
@@ -122,13 +150,14 @@ public class ventanaPrincipal {
         ventana.getContentPane().add(ventanaPadre).setBackground(fondoVentana);
         ventana.setSize(MAXIMIZED_BOTH, MAXIMIZED_BOTH);
         ventana.setExtendedState(MAXIMIZED_BOTH);
-        //ventana.getContentPane().setBackground(fondoVentana);
+        ventana.getContentPane().setBackground(fondoVentana);
         ventana.setIconImage(icono.getImage());
         ventana.setDefaultCloseOperation(EXIT_ON_CLOSE);
         ventana.pack();
         
         ventana.setVisible(true);
-        ventana.setJMenuBar(menuBar);
+        //ventana.setJMenuBar(menuBar);
+        //ventana.setJMenuBar(barLateral);
         
         System.out.println(m_Archivo.getSize());
     }

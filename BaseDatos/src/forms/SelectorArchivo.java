@@ -36,18 +36,16 @@ public class SelectorArchivo extends javax.swing.JFrame {
     FileInputStream fis;
     String ruta;
     
+    
     public void archivoSelector() throws FileNotFoundException, IOException{
         
         
         //String ruta = "C:\\Users\\Almacen\\Desktop\\n.txt";
         //String ruta = "C:\\Users\\sangr\\Desktop\\n.txt";
-        
-        
+                
         selectDialog = new JFileChooser(RutaPorDefecto);
-        //selectDialog.showOpenDialog(this);
         selectDialog.setFileFilter(new FileNameExtensionFilter("Archivo de texto *.txt", "txt"));
-        
-        
+                
         selectDialog.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
         
         int resultado;
@@ -76,7 +74,11 @@ public class SelectorArchivo extends javax.swing.JFrame {
     public void crearEditor() throws FileNotFoundException, IOException{
         File archivo = selectDialog.getSelectedFile(); // obtiene el archivo seleccionado
         ruta =  archivo.toString();
-        System.out.println(archivo);
+        
+        if(BaseDatos.debugTexto){
+            System.out.println(archivo);
+        }
+        
         // muestra error si es inválido
         if ((archivo == null) || (archivo.getName().equals(""))) {
         JOptionPane.showMessageDialog(this, "Nombre de archivo inválido", "Nombre de archivo inválido", JOptionPane.ERROR_MESSAGE);
@@ -90,7 +92,7 @@ public class SelectorArchivo extends javax.swing.JFrame {
         textWin.setIconImage(icono.getImage());
         textWin.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         textWin.setLocationRelativeTo(null);
-        textWin.setPreferredSize(new Dimension(800,600));
+        //textWin.setPreferredSize(new Dimension(800,600));
         //textWin.setResizable(false);
         //textWin.setLayout(null);
         //textWin.pack();

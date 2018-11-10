@@ -11,6 +11,7 @@ import com.sun.prism.Image;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dialog;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.awt.event.ActionEvent;
@@ -21,6 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
@@ -36,7 +38,7 @@ import javax.swing.WindowConstants;
  */
 public class ventanaPrincipal {
     public static JFrame ventana;
-    public static JPanel panelPrincipal;
+    public static JPanel panelPrincipal,panelLateral;
     public static JDesktopPane ventanaPadre;
     public static final Color fondoBarra = new Color(51, 204, 204);
     public Color fondoVentana = new Color(102, 179, 255);
@@ -44,9 +46,11 @@ public class ventanaPrincipal {
     public static final Font FuenteTitulos = new Font("Arial",Font.BOLD,14);
     public static final Font FuenteSubtitulo = new Font("Arial",Font.BOLD,13);
     
+    public JButton boton;
+    
     public JMenuBar menuBar;
     
-    public JMenu barLateral;
+    //public JMenu barLateral;
     
     //Menus de la barra superior.
     public JMenu m_Archivo;
@@ -71,13 +75,22 @@ public class ventanaPrincipal {
     private void configurarVentana()  {
         ventana         = new JFrame();
         panelPrincipal  = new JPanel();
+        panelLateral    = new JPanel();
         ventanaPadre    = new JDesktopPane();
         menuBar         = new JMenuBar();
-        barLateral      = new JMenu();
+        //barLateral      = new JMenu();
+        boton           = new JButton();
+        
+        panelLateral.setLayout(new FlowLayout());
+        
+        boton.setText("Catalogo");
+        panelLateral.add(boton);
+        
+        
         
         ventana.getContentPane().setLayout(new BorderLayout());
         ventana.getContentPane().add(menuBar,BorderLayout.NORTH);
-        ventana.getContentPane().add(barLateral,BorderLayout.WEST);
+        ventana.getContentPane().add(panelLateral,BorderLayout.WEST);
         
         //Declaracion de menu superior
         m_Archivo = new JMenu("Archivo"); 
@@ -108,8 +121,8 @@ public class ventanaPrincipal {
         m_Archivo.add(m_salir);
         
         //Creacion de la seccion del menu lateral        
-        barLateral.add(Catalogo);
-        barLateral.add(Producto);
+        //barLateral.add(Catalogo);
+        //barLateral.add(Producto);
         
         menuBar.setBackground(fondoBarra);
         

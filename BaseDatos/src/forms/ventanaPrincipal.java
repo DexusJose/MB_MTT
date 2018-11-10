@@ -44,7 +44,9 @@ public class ventanaPrincipal {
     public static final Font FuenteTitulos = new Font("Arial",Font.BOLD,14);
     public static final Font FuenteSubtitulo = new Font("Arial",Font.BOLD,13);
     
-    public JMenuBar menuBar,barLateral;
+    public JMenuBar menuBar;
+    
+    public JMenu barLateral;
     
     //Menus de la barra superior.
     public JMenu m_Archivo;
@@ -71,7 +73,7 @@ public class ventanaPrincipal {
         panelPrincipal  = new JPanel();
         ventanaPadre    = new JDesktopPane();
         menuBar         = new JMenuBar();
-        barLateral      = new JMenuBar();
+        barLateral      = new JMenu();
         
         ventana.getContentPane().setLayout(new BorderLayout());
         ventana.getContentPane().add(menuBar,BorderLayout.NORTH);
@@ -159,7 +161,9 @@ public class ventanaPrincipal {
         //ventana.setJMenuBar(menuBar);
         //ventana.setJMenuBar(barLateral);
         
-        System.out.println(m_Archivo.getSize());
+        if(BaseDatos.debugTexto)
+            System.out.println(m_Archivo.getSize());
+        
     }
     
     

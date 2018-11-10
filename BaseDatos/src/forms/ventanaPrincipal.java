@@ -77,7 +77,7 @@ public class ventanaPrincipal {
         ventana.getContentPane().add(menuBar,BorderLayout.NORTH);
         ventana.getContentPane().add(barLateral,BorderLayout.WEST);
         
-        // declaracion de menu superior
+        //Declaracion de menu superior
         m_Archivo = new JMenu("Archivo"); 
         m_Archivo.setFont(FuenteTitulos);
         

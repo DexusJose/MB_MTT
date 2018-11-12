@@ -14,6 +14,7 @@ import java.awt.Dialog;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import static java.awt.Frame.MAXIMIZED_BOTH;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -34,24 +35,27 @@ import javax.swing.WindowConstants;
 
 /**
  *
- * @author Almacen
+ * @author Ing. Dexus José Pérez.
  */
 public class ventanaPrincipal {
-    public static JFrame ventana;
-    public static JPanel panelPrincipal,panelLateral;
+    
+    //Variables Globales para su uso en las diferentes clases.
+    
+    //********* Variables de las ventanas y contenedores. ***********
+    
+    public static JFrame ventana;   // Ventana principal del programa.
+    
+    // Variables de los paneles de las ventanas.
+    public static JPanel panelPrincipal,m_panelLateral; 
+    
     public static JDesktopPane ventanaPadre;
-    public static final Color fondoBarra = new Color(51, 204, 204);
-    public Color fondoVentana = new Color(102, 179, 255);
     
-    public static final Font FuenteTitulos = new Font("Arial",Font.BOLD,14);
-    public static final Font FuenteSubtitulo = new Font("Arial",Font.BOLD,13);
+    //Declaracion de los botones.
+    public JButton b_Refacciones,b_Proveedores;
     
-    public JButton boton;
-    
+    //Barra de menu.
     public JMenuBar menuBar;
-    
-    //public JMenu barLateral;
-    
+            
     //Menus de la barra superior.
     public JMenu m_Archivo;
     
@@ -61,40 +65,68 @@ public class ventanaPrincipal {
     //Menus de la barra lateral izquierda.
     public JMenu Catalogo,Producto;
     
-    //Submenus de la barra lateral izquierda.
-    //public JMenuItem m_Catalogo;
+    //******* Variables de los colores y fuentes del programa. *********
+    
+    public static final Color   fondoBarra          = new Color(51, 204, 204);
+    
+    public static final Color   fondoVentana        = new Color(102, 179, 255);
+    
+    public static final Color   fondoPLateral       = new Color(171,194,194);
+    
+    public static final Color   fondoBtLateral      = new Color(235,230,222);
+    
+    public static final Font    FuenteTitulos14     = new Font("Arial",Font.BOLD,14);
+    
+    public static final Font    FuenteSubtitulo12   = new Font("Arial",Font.BOLD,12);
+    
+    public static final Font    FuenteSubtitulo10   = new Font("Arial",Font.BOLD,10);
     
     
-    
-    
+    //Variable contenedora del icono del programa
     public final ImageIcon icono = new ImageIcon(BaseDatos.class.getResource("/recursos/icono/AUV.png"));
-    public  void crearventana(){
-        configurarVentana();
+    
+    //Metodo para la creacion de la ventana principal
+    public void crearventana(){
+        
+        configurarVentana();    //Llamada a la funcion de creacion de la ventana
+        
     }
 
     private void configurarVentana()  {
+        
         ventana         = new JFrame();
         panelPrincipal  = new JPanel();
-        panelLateral    = new JPanel();
+        m_panelLateral  = new JPanel();
         ventanaPadre    = new JDesktopPane();
         menuBar         = new JMenuBar();
-        //barLateral      = new JMenu();
-        boton           = new JButton();
         
-        panelLateral.setLayout(new FlowLayout());
+        b_Refacciones   = new JButton("Refacciones");
+        b_Proveedores   = new JButton("Proveedores");
         
-        boton.setText("Catalogo");
-        panelLateral.add(boton);
+        //**** Codigo para el panel Lateral.
         
+        m_panelLateral.setLayout(new GridLayout(0,1,1,1));
+        m_panelLateral.setBackground(fondoPLateral);
         
+        // Creación del botón Refacciones.
+        b_Refacciones.setFont(FuenteSubtitulo10);
+        b_Refacciones.setForeground(Color.BLACK);
+        b_Refacciones.setBackground(fondoBtLateral);
+        m_panelLateral.add(b_Refacciones);
+        
+        //Creación del botón Proveedores.
+        b_Proveedores.setFont(FuenteSubtitulo10);
+        b_Proveedores.setForeground(Color.BLACK);
+        b_Proveedores.setBackground(fondoBtLateral);
+        m_panelLateral.add(b_Proveedores);
         
         ventana.getContentPane().setLayout(new BorderLayout());
         ventana.getContentPane().add(menuBar,BorderLayout.NORTH);
-        ventana.getContentPane().add(panelLateral,BorderLayout.WEST);
+        ventana.getContentPane().add(m_panelLateral,BorderLayout.WEST);
         
         //Declaracion de menu superior
         m_Archivo = new JMenu("Archivo"); 
-        m_Archivo.setFont(FuenteTitulos);
+        m_Archivo.setFont(FuenteTitulos14);
         
         //declaracion del menu lteral izquierdo
         Catalogo = new JMenu("Catalogo");
@@ -106,9 +138,9 @@ public class ventanaPrincipal {
         m_salir = new JMenuItem("Salir");
         
         //Asignacion de la fuente Global
-        m_nuevo.setFont(FuenteSubtitulo);
-        m_abrir.setFont(FuenteSubtitulo);
-        m_salir.setFont(FuenteSubtitulo);
+        m_nuevo.setFont(FuenteSubtitulo12);
+        m_abrir.setFont(FuenteSubtitulo12);
+        m_salir.setFont(FuenteSubtitulo12);
         
         //Creacion de la seccion del menu
         menuBar.add(m_Archivo);
@@ -120,10 +152,7 @@ public class ventanaPrincipal {
         
         m_Archivo.add(m_salir);
         
-        //Creacion de la seccion del menu lateral        
-        //barLateral.add(Catalogo);
-        //barLateral.add(Producto);
-        
+                
         menuBar.setBackground(fondoBarra);
         
         m_nuevo.addActionListener(

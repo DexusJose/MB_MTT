@@ -5,23 +5,20 @@
  */
 package forms;
 
-import BaseDatos.*;
+
 import basedatos.BaseDatos;
-import com.sun.prism.Image;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dialog;
-import java.awt.FlowLayout;
+import java.awt.Dimension;
 import java.awt.Font;
+import static java.awt.Frame.ICONIFIED;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
@@ -31,7 +28,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.WindowConstants;
+
 
 /**
  *
@@ -94,32 +91,47 @@ public class ventanaPrincipal {
 
     private void configurarVentana()  {
         
+        final int colpanPrin  = 2;
+        final int filpanPrin  = 0;
+        final int seppanPrinV = 20;
+        final int seppanPrinH = 20;
+        
         ventana         = new JFrame();
         panelPrincipal  = new JPanel();
         m_panelLateral  = new JPanel();
         ventanaPadre    = new JDesktopPane();
         menuBar         = new JMenuBar();
         
+        panelPrincipal.setLayout(new GridLayout(filpanPrin,colpanPrin,seppanPrinH,seppanPrinV));
+        
+        //**** Codigo para el panel Lateral.
+        final int columnas      =  1;
+        final int filas         = 26;
+        final int separacionV   =  1;
+        final int separacionH   =  0;
+        
+        m_panelLateral.setLayout(new GridLayout(filas,columnas,separacionH,separacionV));
+        m_panelLateral.setBackground(fondoPLateral);
+        
+        //Botones del panel lateral.
+        
         b_Refacciones   = new JButton("Refacciones");
         b_Proveedores   = new JButton("Proveedores");
         
-        //**** Codigo para el panel Lateral.
-        
-        m_panelLateral.setLayout(new GridLayout(0,1,1,1));
-        m_panelLateral.setBackground(fondoPLateral);
-        
         // Creación del botón Refacciones.
-        b_Refacciones.setFont(FuenteSubtitulo10);
+        
+        b_Refacciones.setFont(FuenteSubtitulo12);
         b_Refacciones.setForeground(Color.BLACK);
         b_Refacciones.setBackground(fondoBtLateral);
         m_panelLateral.add(b_Refacciones);
         
         //Creación del botón Proveedores.
-        b_Proveedores.setFont(FuenteSubtitulo10);
+        b_Proveedores.setFont(FuenteSubtitulo12);
         b_Proveedores.setForeground(Color.BLACK);
         b_Proveedores.setBackground(fondoBtLateral);
         m_panelLateral.add(b_Proveedores);
         
+        //***** Codigo de la ventana principal
         ventana.getContentPane().setLayout(new BorderLayout());
         ventana.getContentPane().add(menuBar,BorderLayout.NORTH);
         ventana.getContentPane().add(m_panelLateral,BorderLayout.WEST);
@@ -134,7 +146,7 @@ public class ventanaPrincipal {
         
         //creacion de los items del menu;
         m_nuevo = new JMenuItem("Nuevo archivo");
-        m_abrir = new JMenuItem("Abrir");
+        m_abrir = new JMenuItem("Abrir archivo");
         m_salir = new JMenuItem("Salir");
         
         //Asignacion de la fuente Global
@@ -182,29 +194,35 @@ public class ventanaPrincipal {
         m_salir.addActionListener(
                 new ActionListener(){
                     public void actionPerformed(ActionEvent e){
-                        //System.exit(EXIT_ON_CLOSE);
+                        
                         ventana.dispose();      //cambio sobre el metodo de cerrar la ventana.
+                    
                     }
                 }
         );
         
         
         ventana.setTitle("Administración MTTO");
-        ventana.add(panelPrincipal);
+        ventanaPadre.add(panelPrincipal);
+        ventana.add(ventanaPadre,BorderLayout.CENTER);
         ventana.getContentPane().add(ventanaPadre).setBackground(fondoVentana);
-        ventana.setSize(MAXIMIZED_BOTH, MAXIMIZED_BOTH);
-        ventana.setExtendedState(MAXIMIZED_BOTH);
+        ventana.setPreferredSize(new Dimension(800,600));
         ventana.getContentPane().setBackground(fondoVentana);
         ventana.setIconImage(icono.getImage());
         ventana.setDefaultCloseOperation(EXIT_ON_CLOSE);
         ventana.pack();
-        
         ventana.setVisible(true);
-        //ventana.setJMenuBar(menuBar);
-        //ventana.setJMenuBar(barLateral);
+        if(BaseDatos.debugTexto){
+            ventana.setExtendedState(ICONIFIED);
+        }else{
+            ventana.setExtendedState(MAXIMIZED_BOTH);
+        }
+        ventana.setResizable(true);
+        
         
         if(BaseDatos.debugTexto)
-            System.out.println(m_Archivo.getSize());
+            
+            System.out.println(m_Archivo.getSize() + "\n" + "Height:" + panelPrincipal.getHeight());
         
     }
     

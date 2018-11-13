@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Esta es la clase principal del programa.
+ *
  */
 package basedatos;
 
@@ -9,7 +8,7 @@ import forms.ventanaPrincipal;
 
 /**
  *
- * @author Almacen
+ * @author Ing. Dexus José Pérez.
  */
 public class BaseDatos {
 
@@ -17,10 +16,11 @@ public class BaseDatos {
      * @param args the command line arguments
      */
     
-    public static boolean debugTexto = false;
+    public static boolean debugTexto = true;   //Boleano de control para debug
     
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        
         ventanaPrincipal ventana;
         ventana = new ventanaPrincipal();
         ventana.crearventana();

@@ -6,7 +6,7 @@
 package forms;
 
 import basedatos.BaseDatos;
-import java.awt.BorderLayout;
+import static forms.ventanaPrincipal.ventanaPadre;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.io.File;
@@ -15,7 +15,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -23,15 +23,15 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
- * @author Almacen
+ * @author Ing. Dexus José Pérez.
  */
 public class SelectorArchivo extends javax.swing.JFrame {
     public final ImageIcon icono = new ImageIcon(BaseDatos.class.getResource("/recursos/icono/AUV.png"));
-    private final String RutaPorDefecto = "C:\\Users\\\\Desktop";
+    private final String RutaPorDefecto = "C:\\Users\\Desktop";
     
     JFileChooser selectDialog ;
     
-    JFrame textWin;
+    JInternalFrame textWin;
     File f;
     FileInputStream fis;
     String ruta;
@@ -39,10 +39,6 @@ public class SelectorArchivo extends javax.swing.JFrame {
     
     public void archivoSelector() throws FileNotFoundException, IOException{
         
-        
-        //String ruta = "C:\\Users\\Almacen\\Desktop\\n.txt";
-        //String ruta = "C:\\Users\\sangr\\Desktop\\n.txt";
-                
         selectDialog = new JFileChooser(RutaPorDefecto);
         selectDialog.setFileFilter(new FileNameExtensionFilter("Archivo de texto *.txt", "txt"));
                 
@@ -85,14 +81,17 @@ public class SelectorArchivo extends javax.swing.JFrame {
         } // fin de if
         
         
-        textWin = new JFrame();
+        textWin = new JInternalFrame();
         textWin.setTitle("Texto");
         textWin.setSize(800,600);
-        textWin.setExtendedState(NORMAL);
-        textWin.setIconImage(icono.getImage());
+        //textWin.setExtendedState(NORMAL);
+        //textWin.setIconImage(icono.getImage());
         textWin.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        textWin.setLocationRelativeTo(null);
-        //textWin.setPreferredSize(new Dimension(800,600));
+        //textWin.setLocationRelativeTo(null);
+        textWin.setPreferredSize(new Dimension(800,600));
+        textWin.setClosable(true);
+        textWin.setIconifiable(true);
+        textWin.setMaximizable(true);
         //textWin.setResizable(false);
         //textWin.setLayout(null);
         //textWin.pack();
@@ -118,5 +117,6 @@ public class SelectorArchivo extends javax.swing.JFrame {
         JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         areaScrollPane.setPreferredSize(new Dimension(250, 250));
         textWin.add(areaScrollPane);
+        ventanaPadre.add(textWin);
     }
 }

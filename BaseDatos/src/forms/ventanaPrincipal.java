@@ -7,6 +7,7 @@ package forms;
 
 
 import basedatos.BaseDatos;
+import creadorArchivoN.crearArchivo;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -170,10 +171,15 @@ public class ventanaPrincipal {
         m_nuevo.addActionListener(
                 new ActionListener(){
                     public void actionPerformed(ActionEvent e){
-                        InternalText editorMini;
-                        editorMini = new InternalText();
-                        editorMini.textEditIn();
-                        ventanaPadre.add(editorMini.ventanaEdit);
+//                        InternalText editorMini;
+//                        editorMini = new InternalText();
+//                        editorMini.textEditIn();
+//                        ventanaPadre.add(editorMini.ventanaEdit);
+                        crearArchivo nCArchivo;
+                        nCArchivo = new crearArchivo();
+                        
+                        nCArchivo.selectorNArchivo();
+
                     }
                 }
         );

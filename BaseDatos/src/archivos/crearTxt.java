@@ -17,14 +17,15 @@ import java.io.FileWriter;
 public class crearTxt {
     public void crearNtxt(){
         try {
-            String ruta = crearArchivo.path;
+            //String ruta = crearArchivo.path;
             String contenido = "Contenido de ejemplo";
-            File file = new File(ruta);
+            File file = crearArchivo.path;
             // Si el archivo no existe es creado
             if (!file.exists()) {
                 file.createNewFile();
             }
-            FileWriter fw = new FileWriter(file);
+            
+            FileWriter fw = new FileWriter(file+".txt");
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write(contenido);
             bw.close();

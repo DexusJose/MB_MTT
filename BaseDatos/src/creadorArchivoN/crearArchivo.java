@@ -6,6 +6,9 @@
 package creadorArchivoN;
 
 import archivos.crearTxt;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -22,7 +25,7 @@ public class crearArchivo  extends javax.swing.JFrame{
     
     String texto= ".txt";
     
-    public static String path="";
+    public static File path;
     
     public void selectorNArchivo(){
         
@@ -66,8 +69,24 @@ public class crearArchivo  extends javax.swing.JFrame{
         }
         
         
-        JOptionPane.showMessageDialog(null,"Guardado en: "+ n_Archivo.getSelectedFile()+cadena);
-        path=n_Archivo.getCurrentDirectory() +""+ n_Archivo.getSelectedFile()+cadena;
+        JOptionPane.showMessageDialog(null,"Guardado en: "+ n_Archivo.getSelectedFile()+cadena + "\n");
+        path = n_Archivo.getSelectedFile();
+//        try{
+//            if(path !=null){
+//            
+//                FileWriter  save = new FileWriter(path + ".txt");
+//                //save.write(areaDeTexto.getText());
+//                //save.close();
+//                JOptionPane.showMessageDialog(null,
+//                "El archivo se a guardado Exitosamente",
+//                "Información",JOptionPane.INFORMATION_MESSAGE);
+//             }
+//        }
+//        catch(IOException ex){
+//            JOptionPane.showMessageDialog(null,
+//            "Su archivo no se ha guardado",
+//            "Advertencia",JOptionPane.WARNING_MESSAGE);
+//        }
     }
     
 }

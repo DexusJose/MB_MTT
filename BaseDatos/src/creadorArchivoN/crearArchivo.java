@@ -5,7 +5,7 @@
  */
 package creadorArchivoN;
 
-import archivos.crearTxt;
+import creadorArchivos.crearTxt;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -33,9 +33,12 @@ public class crearArchivo  extends javax.swing.JFrame{
         filtroArchivo = new FileNameExtensionFilter("Archivo de texto *.txt",".txt");
         
         int estado;
+        n_Archivo.setDialogTitle("Nuevo");
         n_Archivo.setFileFilter(filtroArchivo);
-        n_Archivo.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        n_Archivo.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        n_Archivo.addChoosableFileFilter(filtroArchivo);
         
+        System.out.println(JFileChooser.ACCESSORY_CHANGED_PROPERTY);
         estado = n_Archivo.showSaveDialog(this);
         
         this.dispose();
@@ -69,7 +72,7 @@ public class crearArchivo  extends javax.swing.JFrame{
         }
         
         
-        JOptionPane.showMessageDialog(null,"Guardado en: "+ n_Archivo.getSelectedFile()+cadena + "\n");
+        JOptionPane.showMessageDialog(null,"Guardado en: "+ n_Archivo.getSelectedFile()+cadena);
         path = n_Archivo.getSelectedFile();
 //        try{
 //            if(path !=null){

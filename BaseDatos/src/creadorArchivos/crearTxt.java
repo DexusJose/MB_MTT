@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package archivos;
+package creadorArchivos;
 
 import creadorArchivoN.crearArchivo;
 import java.io.BufferedWriter;

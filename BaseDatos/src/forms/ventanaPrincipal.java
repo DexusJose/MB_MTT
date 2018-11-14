@@ -28,6 +28,7 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
@@ -44,7 +45,7 @@ public class ventanaPrincipal {
     public static JFrame ventana;   // Ventana principal del programa.
     
     // Variables de los paneles de las ventanas.
-    public static JPanel panelPrincipal,m_panelLateral; 
+    public static JPanel panelPrincipal,m_panelLateral,panelTabs; 
     
     public static JDesktopPane ventanaPadre;
     
@@ -60,6 +61,9 @@ public class ventanaPrincipal {
     //Submenus de la barra superior.
     public JMenuItem m_salir,m_nuevo,m_abrir;
     
+    //Subsubmenu de la barra superior
+    public JMenuItem sm_nuevoTxt;
+    
     //Menus de la barra lateral izquierda.
     public JMenu Catalogo,Producto;
     
@@ -73,11 +77,11 @@ public class ventanaPrincipal {
     
     public static final Color   fondoBtLateral      = new Color(235,230,222);
     
-    public static final Font    FuenteTitulos14     = new Font("Arial",Font.BOLD,14);
+    public static final Font    FuenteTitulos14     = new Font("Arial",Font.PLAIN,14);
     
-    public static final Font    FuenteSubtitulo12   = new Font("Arial",Font.BOLD,12);
+    public static final Font    FuenteSubtitulo12   = new Font("Arial",Font.PLAIN,12);
     
-    public static final Font    FuenteSubtitulo10   = new Font("Arial",Font.BOLD,10);
+    public static final Font    FuenteSubtitulo10   = new Font("Arial",Font.PLAIN,10);
     
     
     //Variable contenedora del icono del programa
@@ -98,11 +102,11 @@ public class ventanaPrincipal {
         final int seppanPrinH = 20;
         
         ventana         = new JFrame();
+        menuBar         = new JMenuBar();
         panelPrincipal  = new JPanel();
         m_panelLateral  = new JPanel();
         ventanaPadre    = new JDesktopPane();
-        menuBar         = new JMenuBar();
-        
+                
         panelPrincipal.setLayout(new GridLayout(filpanPrin,colpanPrin,seppanPrinH,seppanPrinV));
         
         //**** Codigo para el panel Lateral.
@@ -146,17 +150,27 @@ public class ventanaPrincipal {
         Producto = new JMenu("Producto");
         
         //creacion de los items del menu;
-        m_nuevo = new JMenuItem("Nuevo archivo");
+        m_nuevo = new JMenu("Nuevo archivo...");
         m_abrir = new JMenuItem("Abrir archivo");
         m_salir = new JMenuItem("Salir");
+        
+        //Creación de los Subsubmenus del la barra.
+        sm_nuevoTxt = new JMenuItem("Nuevo archivo .TXT");
         
         //Asignacion de la fuente Global
         m_nuevo.setFont(FuenteSubtitulo12);
         m_abrir.setFont(FuenteSubtitulo12);
         m_salir.setFont(FuenteSubtitulo12);
         
+        //Asignacion de las fuentes para submenu nuevo archivo
+        sm_nuevoTxt.setFont(FuenteSubtitulo12);
+        
+        
         //Creacion de la seccion del menu
         menuBar.add(m_Archivo);
+        
+        //Creación de los submenus
+        m_nuevo.add(sm_nuevoTxt);
         
         //agregado de items del menu superior
         m_Archivo.add(m_nuevo);
@@ -168,21 +182,34 @@ public class ventanaPrincipal {
                 
         menuBar.setBackground(fondoBarra);
         
-        m_nuevo.addActionListener(
-                new ActionListener(){
-                    public void actionPerformed(ActionEvent e){
-//                        InternalText editorMini;
-//                        editorMini = new InternalText();
-//                        editorMini.textEditIn();
-//                        ventanaPadre.add(editorMini.ventanaEdit);
-                        crearArchivo nCArchivo;
-                        nCArchivo = new crearArchivo();
-                        
-                        nCArchivo.selectorNArchivo();
-
-                    }
-                }
+        //***** Listeners de los menus ********
+        
+        sm_nuevoTxt.addActionListener(
+                new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                JOptionPane.showMessageDialog(null, "Click en nuevo txt");
+                
+            }
+        }
         );
+        
+//        m_nuevo.addActionListener(
+//                new ActionListener(){
+//                    public void actionPerformed(ActionEvent e){
+////                        InternalText editorMini;
+////                        editorMini = new InternalText();
+////                        editorMini.textEditIn();
+////                        ventanaPadre.add(editorMini.ventanaEdit);
+//                        crearArchivo nCArchivo;
+//                        nCArchivo = new crearArchivo();
+//                        
+//                        nCArchivo.selectorNArchivo();
+//
+//                    }
+//                }
+//        );
         
         m_abrir.addActionListener(
                 new ActionListener(){
@@ -217,6 +244,7 @@ public class ventanaPrincipal {
         ventana.setIconImage(icono.getImage());
         ventana.setDefaultCloseOperation(EXIT_ON_CLOSE);
         ventana.pack();
+        ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
         if(BaseDatos.debugTexto){
             ventana.setExtendedState(ICONIFIED);

@@ -85,7 +85,7 @@ public class ventanaPrincipal {
     
     
     //Variable contenedora del icono del programa
-    public final ImageIcon icono = new ImageIcon(BaseDatos.class.getResource("/recursos/icono/AUV.png"));
+    public final ImageIcon icono = new ImageIcon(BaseDatos.class.getResource("/recursos/icono/icon.png"));
     
     //Metodo para la creacion de la ventana principal
     public void crearventana(){

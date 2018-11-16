@@ -16,7 +16,7 @@ public class BaseDatos {
      * @param args the command line arguments
      */
     
-    public static boolean debugTexto = false;   //Boleano de control para debug
+    public static boolean debugTexto = true;   //Boleano de control para debug
     
     public static void main(String[] args) {
         

@@ -8,6 +8,7 @@ package forms;
 
 import basedatos.BaseDatos;
 import creadorArchivoN.crearArchivo;
+import cuadrosArchivos.nuevoTxt;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -188,8 +189,12 @@ public class ventanaPrincipal {
                 new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(BaseDatos.debugTexto)
+                    JOptionPane.showMessageDialog(null, "Click en nuevo txt");
                 
-                JOptionPane.showMessageDialog(null, "Click en nuevo txt");
+                nuevoTxt ntxt = new nuevoTxt();
+                ntxt.archivotxt();
+                
                 
             }
         }
@@ -198,10 +203,10 @@ public class ventanaPrincipal {
 //        m_nuevo.addActionListener(
 //                new ActionListener(){
 //                    public void actionPerformed(ActionEvent e){
-////                        InternalText editorMini;
-////                        editorMini = new InternalText();
-////                        editorMini.textEditIn();
-////                        ventanaPadre.add(editorMini.ventanaEdit);
+//                        InternalText editorMini;
+//                        editorMini = new InternalText();
+//                        editorMini.textEditIn();
+//                        ventanaPadre.add(editorMini.ventanaEdit);
 //                        crearArchivo nCArchivo;
 //                        nCArchivo = new crearArchivo();
 //                        

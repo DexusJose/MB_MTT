@@ -7,7 +7,6 @@ package forms;
 
 
 import basedatos.BaseDatos;
-import creadorArchivoN.crearArchivo;
 import cuadrosArchivos.nuevoTxt;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -189,11 +188,15 @@ public class ventanaPrincipal {
                 new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(BaseDatos.debugTexto)
-                    JOptionPane.showMessageDialog(null, "Click en nuevo txt");
-                
-                nuevoTxt ntxt = new nuevoTxt();
-                ntxt.archivotxt();
+                try {
+                    if(BaseDatos.debugTexto)
+                        JOptionPane.showMessageDialog(null, "Click en nuevo txt");
+                    
+                    nuevoTxt ntxt = new nuevoTxt();
+                    ntxt.archivotxt();
+                } catch (IOException ex) {
+                    Logger.getLogger(ventanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
                 
             }

@@ -86,6 +86,8 @@ public class ventanaPrincipal {
     
     //Variable contenedora del icono del programa
     public final ImageIcon icono = new ImageIcon(BaseDatos.class.getResource("/recursos/icono/icon.png"));
+    private final ImageIcon nArchivo = new ImageIcon(BaseDatos.class.getResource("/recursos/icono/menus/nfile.png"));
+    private final ImageIcon nTxt = new ImageIcon(BaseDatos.class.getResource("/recursos/icono/menus/ntxt.png"));
     
     //Metodo para la creacion de la ventana principal
     public void crearventana(){
@@ -155,10 +157,12 @@ public class ventanaPrincipal {
         m_salir = new JMenuItem("Salir");
         
         //Creación de los Subsubmenus del la barra.
-        sm_nuevoTxt = new JMenuItem("Nuevo archivo .TXT");
+        sm_nuevoTxt = new JMenuItem("Nuevo archivo .TXT",nTxt);
+        
         
         //Asignacion de la fuente Global
         m_nuevo.setFont(FuenteSubtitulo12);
+        m_nuevo.setIcon(nArchivo);
         m_abrir.setFont(FuenteSubtitulo12);
         m_salir.setFont(FuenteSubtitulo12);
         

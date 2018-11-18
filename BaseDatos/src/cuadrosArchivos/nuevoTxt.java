@@ -38,6 +38,7 @@ public class nuevoTxt extends JFrame {
         
         int estado;
         
+        
         nuevoArchivo.setDialogTitle("Nuevo txt");
         
         nuevoArchivo.setFileFilter(filtro);
@@ -46,22 +47,29 @@ public class nuevoTxt extends JFrame {
         nuevoArchivo.setSelectedFile(archivoDef);
         
         estado = nuevoArchivo.showSaveDialog(this);
+        FileWriter Ntxt;
+        
+        File ntxt;
         
         switch(estado){
             case JFileChooser.APPROVE_OPTION:
 
                 if(BaseDatos.debugTexto)
-                    JOptionPane.showMessageDialog(null, nuevoArchivo.getSelectedFile()+".txt");
-                
-                File ntxt = nuevoArchivo.getSelectedFile();
+                    JOptionPane.showMessageDialog(null,nuevoArchivo.getSelectedFile()+".txt");
+                ntxt = new File(nuevoArchivo.getSelectedFile()+".txt");
+                if(BaseDatos.debugTexto)
+                    System.out.print("Boleano de archivo existente: " + ntxt.exists());
                 
                 if(!ntxt.exists()){
                 
-                    FileWriter Ntxt = new FileWriter(ntxt + ".txt");
-                    JOptionPane.showMessageDialog(null, nuevoArchivo.getSelectedFile()+".txt");
+                    Ntxt = new FileWriter(ntxt);
+                    JOptionPane.showMessageDialog(null, "Guardado en:" + ntxt);
+                    Ntxt.close();
                 }else{
-                    JOptionPane.showMessageDialog(null, "El archivo ya existe!");
+                    JOptionPane.showMessageDialog(null, "El archivo:\n" +ntxt+ "\nya existe!");
                 }
+                
+                dispose();
                 
             break;
             case JFileChooser.CANCEL_OPTION:

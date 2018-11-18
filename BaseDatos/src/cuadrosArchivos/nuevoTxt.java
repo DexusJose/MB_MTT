@@ -6,9 +6,11 @@
 package cuadrosArchivos;
 
 import basedatos.BaseDatos;
+import forms.ventanaPrincipal;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -24,18 +26,24 @@ public class nuevoTxt extends JFrame {
     
     public FileNameExtensionFilter filtro;
     
+    public static final ImageIcon icono = new ImageIcon(BaseDatos.class.getResource("/recursos/icono/icon.png"));
+    
     public void archivotxt() throws IOException{
         
         nuevoArchivo = new JFileChooser();
         
+        
         filtro = new FileNameExtensionFilter("Archivo de texto .txt*",".txt");
+        File archivoDef = new  File("Nuevo");
         
         int estado;
         
         nuevoArchivo.setDialogTitle("Nuevo txt");
+        
         nuevoArchivo.setFileFilter(filtro);
         nuevoArchivo.setFileSelectionMode(JFileChooser.FILES_ONLY);
         nuevoArchivo.addChoosableFileFilter(filtro);
+        nuevoArchivo.setSelectedFile(archivoDef);
         
         estado = nuevoArchivo.showSaveDialog(this);
         
@@ -47,7 +55,7 @@ public class nuevoTxt extends JFrame {
                 
                 File ntxt = nuevoArchivo.getSelectedFile();
                 
-                if(ntxt.equals(nuevoArchivo.getSelectedFile()+".txt")){
+                if(!ntxt.exists()){
                 
                     FileWriter Ntxt = new FileWriter(ntxt + ".txt");
                     JOptionPane.showMessageDialog(null, nuevoArchivo.getSelectedFile()+".txt");

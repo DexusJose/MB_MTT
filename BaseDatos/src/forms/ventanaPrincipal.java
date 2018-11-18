@@ -85,7 +85,7 @@ public class ventanaPrincipal {
     
     
     //Variable contenedora del icono del programa
-    public final ImageIcon icono = new ImageIcon(BaseDatos.class.getResource("/recursos/icono/icon.png"));
+    public static final ImageIcon icono = new ImageIcon(BaseDatos.class.getResource("/recursos/icono/icon.png"));
     private final ImageIcon nArchivo = new ImageIcon(BaseDatos.class.getResource("/recursos/icono/menus/nfile.png"));
     private final ImageIcon nTxt = new ImageIcon(BaseDatos.class.getResource("/recursos/icono/menus/ntxt.png"));
     

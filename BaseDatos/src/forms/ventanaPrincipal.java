@@ -89,6 +89,7 @@ public class ventanaPrincipal {
     
 //Iamgenes de los menus y submenus
     private final ImageIcon nArchivo    = new ImageIcon(BaseDatos.class.getResource("/recursos/icono/menus/nfile.png"));
+    private final ImageIcon exit        = new ImageIcon(BaseDatos.class.getResource("/recursos/icono/menus/iexit.png"));
     private final ImageIcon nTxt        = new ImageIcon(BaseDatos.class.getResource("/recursos/icono/menus/ntxt.png"));
     private final ImageIcon nDB         = new ImageIcon(BaseDatos.class.getResource("/recursos/icono/menus/nodb.png"));
     
@@ -157,7 +158,7 @@ public class ventanaPrincipal {
         //creacion de los items del menu;
         m_nuevo = new JMenu("Nuevo archivo...");
         m_abrir = new JMenuItem("Abrir archivo");
-        m_salir = new JMenuItem("Salir");
+        m_salir = new JMenuItem("Salir",exit);
         
         //Creación de los Subsubmenus del la barra.
         sm_nuevoTxt = new JMenuItem("Nuevo archivo .TXT",nTxt);

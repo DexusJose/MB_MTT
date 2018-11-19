@@ -62,7 +62,7 @@ public class ventanaPrincipal {
     public JMenuItem m_salir,m_nuevo,m_abrir;
     
     //Subsubmenu de la barra superior
-    public JMenuItem sm_nuevoTxt;
+    public JMenuItem sm_nuevoTxt,sm_nuevoDb;
     
     //Menus de la barra lateral izquierda.
     public JMenu Catalogo,Producto;
@@ -85,9 +85,12 @@ public class ventanaPrincipal {
     
     
     //Variable contenedora del icono del programa
-    public static final ImageIcon icono = new ImageIcon(BaseDatos.class.getResource("/recursos/icono/icon.png"));
-    private final ImageIcon nArchivo = new ImageIcon(BaseDatos.class.getResource("/recursos/icono/menus/nfile.png"));
-    private final ImageIcon nTxt = new ImageIcon(BaseDatos.class.getResource("/recursos/icono/menus/ntxt.png"));
+    public static ImageIcon icono       = new ImageIcon(BaseDatos.class.getResource("/recursos/icono/icon.png"));
+    
+//Iamgenes de los menus y submenus
+    private final ImageIcon nArchivo    = new ImageIcon(BaseDatos.class.getResource("/recursos/icono/menus/nfile.png"));
+    private final ImageIcon nTxt        = new ImageIcon(BaseDatos.class.getResource("/recursos/icono/menus/ntxt.png"));
+    private final ImageIcon nDB         = new ImageIcon(BaseDatos.class.getResource("/recursos/icono/menus/nodb.png"));
     
     //Metodo para la creacion de la ventana principal
     public void crearventana(){
@@ -158,6 +161,7 @@ public class ventanaPrincipal {
         
         //Creación de los Subsubmenus del la barra.
         sm_nuevoTxt = new JMenuItem("Nuevo archivo .TXT",nTxt);
+        sm_nuevoDb  = new JMenuItem("Nuevo archivo .ODB",nDB);
         
         
         //Asignacion de la fuente Global
@@ -168,6 +172,7 @@ public class ventanaPrincipal {
         
         //Asignacion de las fuentes para submenu nuevo archivo
         sm_nuevoTxt.setFont(FuenteSubtitulo12);
+        sm_nuevoDb.setFont(FuenteSubtitulo12);
         
         
         //Creacion de la seccion del menu
@@ -175,6 +180,7 @@ public class ventanaPrincipal {
         
         //Creación de los submenus
         m_nuevo.add(sm_nuevoTxt);
+        m_nuevo.add(sm_nuevoDb);
         
         //agregado de items del menu superior
         m_Archivo.add(m_nuevo);

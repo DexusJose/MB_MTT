@@ -8,6 +8,7 @@ package forms;
 
 import basedatos.BaseDatos;
 import cuadrosArchivos.nuevoTxt;
+import forms.tabs.pestana;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -30,6 +31,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import puebas.tabs;
 
 
 /**
@@ -47,7 +49,7 @@ public class ventanaPrincipal {
     // Variables de los paneles de las ventanas.
     public static JPanel panelPrincipal,m_panelLateral,panelTabs; 
     
-    public static JDesktopPane ventanaPadre;
+    public static JPanel ventanaPadre;
     
     //Declaracion de los botones.
     public JButton b_Refacciones,b_Proveedores;
@@ -111,7 +113,7 @@ public class ventanaPrincipal {
         menuBar         = new JMenuBar();
         panelPrincipal  = new JPanel();
         m_panelLateral  = new JPanel();
-        ventanaPadre    = new JDesktopPane();
+        ventanaPadre    = new JPanel();
                 
         panelPrincipal.setLayout(new GridLayout(filpanPrin,colpanPrin,seppanPrinH,seppanPrinV));
         
@@ -146,6 +148,11 @@ public class ventanaPrincipal {
         ventana.getContentPane().setLayout(new BorderLayout());
         ventana.getContentPane().add(menuBar,BorderLayout.NORTH);
         ventana.getContentPane().add(m_panelLateral,BorderLayout.WEST);
+        
+        pestana pn = new pestana();
+        pn.panelTab();
+        
+        
         
         //Declaracion de menu superior
         m_Archivo = new JMenu("Archivo"); 

@@ -5,6 +5,10 @@ package puebas;
  *   images/middle.gif.
  */
  
+import forms.ventanaPrincipal;
+import static forms.ventanaPrincipal.panelPrincipal;
+import static forms.ventanaPrincipal.ventana;
+import static forms.ventanaPrincipal.ventanaPadre;
 import javax.swing.JTabbedPane;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -49,7 +53,6 @@ public class tabs extends JPanel {
          
         //Add the tabbed pane to this panel.
         add(tabbedPane);
-         
         //The following line enables to use scrolling tabs.
         tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
     }

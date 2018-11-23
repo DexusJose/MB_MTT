@@ -7,6 +7,7 @@ package forms;
 
 
 import basedatos.BaseDatos;
+import cuadrosArchivos.nuevoDb;
 import cuadrosArchivos.nuevoTxt;
 import forms.tabs.pestana;
 import java.awt.BorderLayout;
@@ -169,7 +170,7 @@ public class ventanaPrincipal {
         
         //Creación de los Subsubmenus del la barra.
         sm_nuevoTxt = new JMenuItem("Nuevo archivo .TXT",nTxt);
-        sm_nuevoDb  = new JMenuItem("Nuevo archivo .ODB",nDB);
+        sm_nuevoDb  = new JMenuItem("Nuevo archivo .mdb",nDB);
         
         
         //Asignacion de la fuente Global
@@ -220,6 +221,18 @@ public class ventanaPrincipal {
             }
         }
         );
+        
+        sm_nuevoDb.addActionListener((ActionEvent e) -> {
+            try {
+                if(BaseDatos.debugTexto)
+                    JOptionPane.showMessageDialog(null, "Click en nuevo txt");
+                
+                nuevoDb nmd = new nuevoDb();
+                nmd.nuevodb();
+            } catch (IOException ex) {
+                Logger.getLogger(ventanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         
 //        m_nuevo.addActionListener(
 //                new ActionListener(){

@@ -10,6 +10,7 @@ import basedatos.BaseDatos;
 import cuadrosArchivos.nuevoDb;
 import cuadrosArchivos.nuevoTxt;
 import forms.tabs.pestana;
+import forms.ventanantxt.ventanatxt;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -50,7 +51,7 @@ public class ventanaPrincipal {
     // Variables de los paneles de las ventanas.
     public static JPanel panelPrincipal,m_panelLateral,panelTabs; 
     
-    public static JPanel ventanaPadre;
+    public static JDesktopPane ventanaPadre;
     
     //Declaracion de los botones.
     public JButton b_Refacciones,b_Proveedores;
@@ -114,7 +115,7 @@ public class ventanaPrincipal {
         menuBar         = new JMenuBar();
         panelPrincipal  = new JPanel();
         m_panelLateral  = new JPanel();
-        ventanaPadre    = new JPanel();
+        ventanaPadre    = new JDesktopPane();
                 
         panelPrincipal.setLayout(new GridLayout(filpanPrin,colpanPrin,seppanPrinH,seppanPrinV));
         
@@ -150,8 +151,9 @@ public class ventanaPrincipal {
         ventana.getContentPane().add(menuBar,BorderLayout.NORTH);
         ventana.getContentPane().add(m_panelLateral,BorderLayout.WEST);
         
-        pestana pn = new pestana();
-        pn.panelTab();
+        //pestana pn = new pestana();
+        //pn.panelTab();
+        
         
         
         
@@ -250,17 +252,14 @@ public class ventanaPrincipal {
 //                }
 //        );
         
-        m_abrir.addActionListener(
-                new ActionListener(){
-                    public void actionPerformed(ActionEvent e){
-                        SelectorArchivo selector;
-                        selector = new SelectorArchivo();
-                        try {
-                            selector.archivoSelector();
-                        } catch (IOException ex) {
-                            Logger.getLogger(ventanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }
+        m_abrir.addActionListener((ActionEvent e) -> {
+            SelectorArchivo selector;
+            selector = new SelectorArchivo();
+            try {
+                selector.archivoSelector();
+            } catch (IOException ex) {
+                Logger.getLogger(ventanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
         
         m_salir.addActionListener(
@@ -273,9 +272,10 @@ public class ventanaPrincipal {
                 }
         );
         
-        
+        ventanatxt tx = new ventanatxt();
+        tx.abrirventanatxt();
         ventana.setTitle("Administración MTTO");
-        ventanaPadre.add(panelPrincipal);
+        //ventanaPadre.add(panelPrincipal);
         ventana.add(ventanaPadre,BorderLayout.CENTER);
         ventana.getContentPane().add(ventanaPadre).setBackground(fondoVentana);
         ventana.setPreferredSize(new Dimension(800,600));
@@ -292,12 +292,12 @@ public class ventanaPrincipal {
         }
         ventana.setResizable(true);
         
-        
+        //System.out.print(panelPrincipal.getComponents());
         if(BaseDatos.debugTexto)
             
             System.out.println(m_Archivo.getSize() + "\n" + "Height:" + panelPrincipal.getHeight());
         
-    }
-    
+        }
+        
     
 }

@@ -69,6 +69,8 @@ public class nuevoTxt extends JFrame {
                     JOptionPane.showMessageDialog(null, "El archivo:\n" +ntxt+ "\nya existe!");
                 }
                 
+                System.out.println(ntxt);
+                
                 dispose();
                 
             break;

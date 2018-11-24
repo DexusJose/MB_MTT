@@ -18,6 +18,7 @@ import java.awt.Font;
 import static java.awt.Frame.ICONIFIED;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -45,6 +46,12 @@ public class ventanaPrincipal {
     //Variables Globales para su uso en las diferentes clases.
     
     //********* Variables de las ventanas y contenedores. ***********
+    
+    //Variable de la dimension de la pantalla
+    private final Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+    
+    public int altoPantalla = pantalla.height;
+    public int largoPantalla = pantalla.width;
     
     public static JFrame ventana;   // Ventana principal del programa.
     
@@ -105,6 +112,9 @@ public class ventanaPrincipal {
     }
 
     private void configurarVentana()  {
+        
+        
+        System.out.print("resolucion: "+ largoPantalla + "x" + altoPantalla);
         
         final int colpanPrin  = 2;
         final int filpanPrin  = 0;
@@ -205,24 +215,17 @@ public class ventanaPrincipal {
         
         //***** Listeners de los menus ********
         
-        sm_nuevoTxt.addActionListener(
-                new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    if(BaseDatos.debugTexto)
-                        JOptionPane.showMessageDialog(null, "Click en nuevo txt");
-                    
-                    nuevoTxt ntxt = new nuevoTxt();
-                    ntxt.archivotxt();
-                } catch (IOException ex) {
-                    Logger.getLogger(ventanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        sm_nuevoTxt.addActionListener((ActionEvent e) -> {
+            try {
+                if(BaseDatos.debugTexto)
+                    JOptionPane.showMessageDialog(null, "Click en nuevo txt");
                 
-                
+                nuevoTxt ntxt = new nuevoTxt();                
+                ntxt.archivotxt();
+            } catch (IOException ex) {
+                Logger.getLogger(ventanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        );
+        });
         
         sm_nuevoDb.addActionListener((ActionEvent e) -> {
             try {
@@ -262,15 +265,9 @@ public class ventanaPrincipal {
             }
         });
         
-        m_salir.addActionListener(
-                new ActionListener(){
-                    public void actionPerformed(ActionEvent e){
-                        
-                        ventana.dispose();      //cambio sobre el metodo de cerrar la ventana.
-                    
-                    }
-                }
-        );
+        m_salir.addActionListener((ActionEvent e) -> {
+            ventana.dispose();      //cambio sobre el metodo de cerrar la ventana.
+        });
         
         ventanatxt tx = new ventanatxt();
         tx.abrirventanatxt();
@@ -278,7 +275,7 @@ public class ventanaPrincipal {
         //ventanaPadre.add(panelPrincipal);
         ventana.add(ventanaPadre,BorderLayout.CENTER);
         ventana.getContentPane().add(ventanaPadre).setBackground(fondoVentana);
-        ventana.setPreferredSize(new Dimension(800,600));
+        ventana.setPreferredSize(new Dimension(largoPantalla,altoPantalla));
         ventana.getContentPane().setBackground(fondoVentana);
         ventana.setIconImage(icono.getImage());
         ventana.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -292,7 +289,6 @@ public class ventanaPrincipal {
         }
         ventana.setResizable(true);
         
-        //System.out.print(panelPrincipal.getComponents());
         if(BaseDatos.debugTexto)
             
             System.out.println(m_Archivo.getSize() + "\n" + "Height:" + panelPrincipal.getHeight());
